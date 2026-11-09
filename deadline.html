@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeadlineHQ Canada — Never Miss a Business Deadline Again</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --primary: #0d9488;
+    --primary-dark: #0f766e;
+    --primary-light: #ccfbf1;
+    --primary-50: #f0fdfa;
+    --accent: #f59e0b;
+    --danger: #ef4444;
+    --danger-bg: #fef2f2;
+    --warning: #f97316;
+    --warning-bg: #fff7ed;
+    --success: #22c55e;
+    --success-bg: #f0fdf4;
+    --info: #3b82f6;
+    --info-bg: #eff6ff;
+    --dark: #0f172a;
+    --text: #334155;
+    --text-muted: #94a3b8;
+    --border: #e2e8f0;
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --radius: 10px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.1);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+  }
+  a { color: var(--primary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  img { max-width: 100%; }
+
+  /* ===== CANADIAN BANNER ===== */
+  .ca-banner {
+    background: linear-gradient(90deg, #ef4444 0%, #ef4444 33%, #ffffff 33%, #ffffff 67%, #ef4444 67%, #ef4444 100%);
+    height: 4px;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border); padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; height: 60px;
+  }
+  .logo { font-size: 1.2rem; font-weight: 800; color: var(--dark); display: flex; align-items: center; gap: 6px; }
+  .logo-icon {
+    width: 32px; height: 32px; background: var(--primary); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 1rem; font-weight: 800;
+  }
+  .logo-flag { font-size: 1.1rem; margin-left: 4px; }
+  .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+  .nav-links a { color: var(--text-muted); font-weight: 500; font-size: 0.9rem; }
+  .nav-links a:hover { color: var(--primary); text-decoration: none; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 10px 20px; border-radius: 8px; font-weight: 600;
+    font-size: 0.9rem; border: none; cursor: pointer; transition: all 0.2s; gap: 6px;
+  }
+  .btn-primary { background: var(--primary); color: white; }
+  .btn-primary:hover { background: var(--primary-dark); text-decoration: none; transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+  .btn-outline:hover { background: var(--primary); color: white; text-decoration: none; }
+  .btn-dark { background: var(--dark); color: white; }
+  .btn-dark:hover { background: #1e293b; text-decoration: none; }
+  .btn-sm { padding: 6px 14px; font-size: 0.8rem; }
+  .btn-lg { padding: 14px 28px; font-size: 1.05rem; }
+  .btn-danger { background: var(--danger); color: white; }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(160deg, #0f172a 0%, #1e293b 60%, #0f766e 100%);
+    color: white; padding: 5rem 2rem 4rem; position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ''; position: absolute; top: -50%; right: -20%;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
+  }
+  .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .hero h1 { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+  .hero h1 em { font-style: normal; color: #5eead4; }
+  .hero p { font-size: 1.1rem; opacity: 0.8; margin-bottom: 2rem; max-width: 480px; }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; margin-bottom: 1rem;
+    color: #5eead4; font-weight: 600;
+  }
+  .hero-visual {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 1.5rem; backdrop-filter: blur(8px);
+  }
+  .mini-stat-row { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+  .mini-stat {
+    flex: 1; background: rgba(255,255,255,0.08); border-radius: 8px; padding: 12px;
+    text-align: center;
+  }
+  .mini-stat strong { display: block; font-size: 1.5rem; }
+  .mini-stat span { font-size: 0.75rem; opacity: 0.7; }
+  .mini-stat.red strong { color: #f87171; }
+  .mini-stat.orange strong { color: #fb923c; }
+  .mini-stat.green strong { color: #4ade80; }
+  .mini-deadline {
+    background: rgba(255,255,255,0.06); border-radius: 8px; padding: 10px 12px;
+    margin-bottom: 6px; display: flex; align-items: center; gap: 10px;
+    font-size: 0.85rem; border-left: 3px solid;
+  }
+  .mini-deadline.urgent { border-color: #f87171; }
+  .mini-deadline.soon { border-color: #fb923c; }
+  .mini-deadline.ok { border-color: #4ade80; }
+  .mini-deadline .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .mini-deadline.urgent .dot { background: #f87171; }
+  .mini-deadline.soon .dot { background: #fb923c; }
+  .mini-deadline.ok .dot { background: #4ade80; }
+
+  /* ===== PROBLEM BAR ===== */
+  .problem-bar {
+    background: var(--danger-bg); border-bottom: 1px solid #fecaca;
+    padding: 1.25rem 2rem; text-align: center;
+  }
+  .problem-bar p { max-width: 750px; margin: 0 auto; font-weight: 600; color: #991b1b; }
+  .problem-bar span { color: var(--danger); font-weight: 800; }
+
+  /* ===== TRUST BAR ===== */
+  .trust-bar {
+    background: white; border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem; text-align: center;
+  }
+  .trust-items { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; align-items: center; }
+  .trust-items span { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; display: flex; align-items: center; gap: 4px; }
+
+  /* ===== SECTIONS ===== */
+  section { padding: 4rem 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    text-transform: uppercase; font-size: 0.8rem; font-weight: 700;
+    color: var(--primary); letter-spacing: 1px; text-align: center; margin-bottom: 0.5rem;
+  }
+  .section-title { font-size: 1.75rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; color: var(--dark); }
+  .section-sub { text-align: center; color: var(--text-muted); max-width: 560px; margin: 0 auto 2.5rem; }
+
+  /* ===== PROVINCES GRID ===== */
+  .prov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 8px; max-width: 800px; margin: 0 auto 2rem; }
+  .prov-tag {
+    background: var(--primary-50); border: 1px solid #99f6e4; color: var(--primary-dark);
+    padding: 6px 10px; border-radius: 6px; font-size: 0.78rem; font-weight: 600;
+    text-align: center;
+  }
+
+  /* ===== HOW IT WORKS ===== */
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
+  .how-card { text-align: center; padding: 2rem 1.5rem; }
+  .how-icon {
+    width: 56px; height: 56px; border-radius: 14px; margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  }
+  .how-card:nth-child(1) .how-icon { background: var(--primary-light); }
+  .how-card:nth-child(2) .how-icon { background: var(--info-bg); }
+  .how-card:nth-child(3) .how-icon { background: var(--warning-bg); }
+  .how-card:nth-child(4) .how-icon { background: var(--success-bg); }
+  .how-card h3 { margin-bottom: 0.5rem; color: var(--dark); }
+  .how-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+  /* ===== DEMO DASHBOARD ===== */
+  .demo-section { background: var(--dark); padding: 4rem 2rem; }
+  .demo-section .section-label { color: #5eead4; }
+  .demo-section .section-title { color: white; }
+  .demo-section .section-sub { color: #94a3b8; }
+
+  .dashboard {
+    background: var(--bg); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4); max-width: 1000px; margin: 0 auto;
+  }
+  .dash-topbar {
+    background: white; padding: 12px 20px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  .dash-topbar h3 { font-size: 1rem; color: var(--dark); }
+  .dash-topbar-right { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .biz-select, .prov-select {
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px;
+    font-size: 0.8rem; background: white; color: var(--text);
+  }
+  .dash-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); border-bottom: 1px solid var(--border);
+  }
+  .dash-stat {
+    background: white; padding: 16px 20px; text-align: center;
+  }
+  .dash-stat strong { display: block; font-size: 1.5rem; }
+  .dash-stat span { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .dash-stat.s-red strong { color: var(--danger); }
+  .dash-stat.s-orange strong { color: var(--warning); }
+  .dash-stat.s-yellow strong { color: #eab308; }
+  .dash-stat.s-green strong { color: var(--success); }
+
+  .dash-filters {
+    background: white; padding: 12px 20px; border-bottom: 1px solid var(--border);
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .dash-pill {
+    padding: 5px 12px; border-radius: 16px; font-size: 0.78rem; font-weight: 600;
+    border: 1.5px solid var(--border); background: white; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+  }
+  .dash-pill:hover, .dash-pill.active { border-color: var(--primary); color: var(--primary); background: var(--primary-50); }
+
+  .dash-body { padding: 16px 20px; max-height: 480px; overflow-y: auto; }
+  .deadline-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 14px 16px; margin-bottom: 8px; display: grid;
+    grid-template-columns: 4px 1fr auto; gap: 14px; align-items: center;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .deadline-card:hover { box-shadow: var(--shadow); border-color: #cbd5e1; }
+  .dl-bar { width: 4px; height: 100%; min-height: 40px; border-radius: 2px; }
+  .dl-bar.overdue { background: var(--danger); }
+  .dl-bar.this-week { background: var(--warning); }
+  .dl-bar.this-month { background: #eab308; }
+  .dl-bar.upcoming { background: var(--success); }
+  .dl-info h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 2px; }
+  .dl-meta { display: flex; gap: 12px; font-size: 0.78rem; color: var(--text-muted); flex-wrap: wrap; }
+  .dl-meta span { display: flex; align-items: center; gap: 3px; }
+  .dl-right { text-align: right; }
+  .dl-badge {
+    font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+    text-transform: uppercase; letter-spacing: 0.3px; white-space: nowrap;
+  }
+  .dl-badge.overdue { background: var(--danger-bg); color: var(--danger); }
+  .dl-badge.this-week { background: var(--warning-bg); color: var(--warning); }
+  .dl-badge.this-month { background: #fefce8; color: #a16207; }
+  .dl-badge.upcoming { background: var(--success-bg); color: #15803d; }
+  .dl-days { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+  /* ===== DETAIL MODAL ===== */
+  .modal-bg {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 1000; align-items: center; justify-content: center; padding: 1rem;
+  }
+  .modal-bg.open { display: flex; }
+  .modal {
+    background: white; border-radius: 14px; padding: 0; max-width: 560px;
+    width: 100%; max-height: 90vh; overflow-y: auto; position: relative;
+  }
+  .modal-header {
+    padding: 20px 24px 16px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; justify-content: space-between;
+  }
+  .modal-header h2 { font-size: 1.15rem; color: var(--dark); }
+  .modal-close {
+    background: none; border: none; font-size: 1.4rem; cursor: pointer;
+    color: var(--text-muted); padding: 0 4px;
+  }
+  .modal-body { padding: 20px 24px; }
+  .modal-body .detail-row {
+    display: flex; justify-content: space-between; padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9; font-size: 0.9rem;
+  }
+  .modal-body .detail-row:last-child { border: none; }
+  .detail-label { color: var(--text-muted); font-weight: 500; }
+  .detail-value { font-weight: 600; color: var(--dark); text-align: right; max-width: 60%; }
+  .modal-body .guide-box {
+    background: var(--primary-50); border: 1px solid #99f6e4; border-radius: 8px;
+    padding: 14px 16px; margin-top: 12px;
+  }
+  .guide-box h4 { font-size: 0.9rem; color: var(--primary-dark); margin-bottom: 6px; }
+  .guide-box ol { padding-left: 1.2rem; font-size: 0.85rem; color: var(--text); }
+  .guide-box li { margin-bottom: 4px; }
+  .guide-box .penalty { color: var(--danger); font-weight: 600; margin-top: 8px; font-size: 0.85rem; }
+  .guide-box .cra-ref { color: var(--primary); font-size: 0.8rem; margin-top: 6px; }
+  .modal-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; gap: 8px; justify-content: flex-end; }
+
+  /* ===== ADD DEADLINE MODAL ===== */
+  .add-form label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; margin-top: 12px; }
+  .add-form input, .add-form select, .add-form textarea {
+    width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
+    border-radius: 8px; font-size: 0.9rem; outline: none; font-family: inherit;
+  }
+  .add-form input:focus, .add-form select:focus, .add-form textarea:focus { border-color: var(--primary); }
+  .add-form textarea { resize: vertical; min-height: 60px; }
+
+  /* ===== FEATURES ===== */
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .feature-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1.75rem; transition: all 0.2s;
+  }
+  .feature-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .feature-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+  .feature-card h3 { font-size: 1.05rem; color: var(--dark); margin-bottom: 0.4rem; }
+  .feature-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+  /* ===== PRICING ===== */
+  .pricing-section { background: #f1f5f9; }
+  .pricing-toggle {
+    display: flex; justify-content: center; margin-bottom: 2rem; gap: 0;
+  }
+  .pricing-toggle button {
+    padding: 10px 24px; font-size: 0.9rem; font-weight: 600; border: 2px solid var(--border);
+    background: white; cursor: pointer; color: var(--text-muted); transition: all 0.2s;
+  }
+  .pricing-toggle button:first-child { border-radius: 8px 0 0 8px; }
+  .pricing-toggle button:last-child { border-radius: 0 8px 8px 0; border-left: none; }
+  .pricing-toggle button.active { background: var(--primary); color: white; border-color: var(--primary); }
+  .save-badge { background: var(--success); color: white; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; margin-left: 4px; vertical-align: middle; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 920px; margin: 0 auto; }
+  .price-card {
+    background: white; border-radius: 14px; padding: 2rem;
+    border: 2px solid var(--border); text-align: center; position: relative;
+  }
+  .price-card.featured { border-color: var(--primary); box-shadow: var(--shadow-lg); }
+  .price-card.featured::before {
+    content: "MOST POPULAR"; position: absolute; top: -12px; left: 50%;
+    transform: translateX(-50%); background: var(--primary); color: white;
+    padding: 4px 14px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;
+  }
+  .price-card h3 { font-size: 1.15rem; color: var(--dark); margin-bottom: 0.25rem; }
+  .price-amount { font-size: 2.75rem; font-weight: 800; color: var(--dark); margin: 0.75rem 0; }
+  .price-amount span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+  .price-period { font-size: 0.8rem; color: var(--text-muted); margin-top: -8px; margin-bottom: 8px; }
+  .price-card ul { list-style: none; text-align: left; margin: 1.5rem 0; }
+  .price-card li { padding: 6px 0; font-size: 0.9rem; display: flex; gap: 8px; align-items: flex-start; }
+  .price-card li::before { content: "✓"; color: var(--success); font-weight: 700; flex-shrink: 0; }
+  .price-card .btn { width: 100%; padding: 12px; }
+  .price-note { text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 1rem; }
+
+  /* ===== FAQ ===== */
+  .faq-list { max-width: 680px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q {
+    padding: 16px 0; font-weight: 700; color: var(--dark); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; font-size: 1rem;
+  }
+  .faq-q::after { content: "+"; font-size: 1.3rem; color: var(--text-muted); transition: transform 0.2s; }
+  .faq-q.open::after { transform: rotate(45deg); }
+  .faq-a { padding: 0 0 16px; color: var(--text-muted); font-size: 0.95rem; display: none; }
+  .faq-a.open { display: block; }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: white; text-align: center;
+  }
+  .cta-section h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+  .cta-section p { opacity: 0.85; margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--dark); color: #64748b; padding: 2.5rem 2rem; text-align: center; font-size: 0.85rem; }
+  footer a { color: #94a3b8; }
+  .footer-canada { font-size: 0.78rem; color: #475569; margin-top: 0.75rem; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .dash-stats { grid-template-columns: repeat(2, 1fr); }
+    .deadline-card { grid-template-columns: 4px 1fr; }
+    .dl-right { grid-column: 2; text-align: left; }
+    section { padding: 3rem 1.25rem; }
+    .trust-items { gap: 1rem; }
+    .prov-grid { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- CANADIAN COLOUR BAR -->
+<div class="ca-banner"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><div class="logo-icon">D</div> DeadlineHQ <span class="logo-flag">🇨🇦</span></div>
+    <div class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#demo">Live Demo</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#pricing" class="btn btn-primary btn-sm">Start Free →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🇨🇦 Built for Canadian Businesses — CRA, Provincial & Municipal Deadlines</div>
+      <h1>Never Miss a <em>Canadian Business Deadline</em> Again</h1>
+      <p>GST/HST remittances, T2 corporate filings, provincial licences, WorkSafeBC, WSIB — track every Canadian compliance deadline in one dashboard. Get reminders before the CRA comes knocking.</p>
+      <div class="hero-buttons">
+        <a href="#demo" class="btn btn-primary btn-lg">Try the Live Demo</a>
+        <a href="#pricing" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.3);color:white;">See Pricing</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="mini-stat-row">
+        <div class="mini-stat red"><strong>2</strong><span>Overdue</span></div>
+        <div class="mini-stat orange"><strong>3</strong><span>This Week</span></div>
+        <div class="mini-stat green"><strong>7</strong><span>On Track</span></div>
+      </div>
+      <div class="mini-deadline urgent"><div class="dot"></div> GST/HST Remittance — <strong>3 days overdue</strong></div>
+      <div class="mini-deadline urgent"><div class="dot"></div> Payroll Source Deductions — <strong>1 day overdue</strong></div>
+      <div class="mini-deadline soon"><div class="dot"></div> Provincial Business Licence — <strong>in 4 days</strong></div>
+      <div class="mini-deadline soon"><div class="dot"></div> Commercial Insurance Renewal — <strong>in 6 days</strong></div>
+      <div class="mini-deadline ok"><div class="dot"></div> T2 Corporate Tax Return — <strong>in 45 days</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM BAR -->
+<div class="problem-bar">
+  <p>⚠️ The CRA charges <span>1% per month + compounding daily interest</span> on late GST/HST remittances. The average Canadian small business pays <span>$1,800+ in avoidable penalties per year</span>. Most don't know they missed a deadline until the Notice of Assessment arrives.</p>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-items">
+    <span>🇨🇦 100% Canadian</span>
+    <span>🏛️ CRA Deadline Coverage</span>
+    <span>📍 All 13 Provinces & Territories</span>
+    <span>🔒 Data Stored in Canada</span>
+    <span>💲 Priced in CAD</span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Set It Up Once. Never Worry Again.</h2>
+    <p class="section-sub">Tell us your business type and province — we pre-load every CRA, provincial, and municipal deadline you need to track.</p>
+
+    <div class="prov-grid">
+      <div class="prov-tag">🏔️ BC</div>
+      <div class="prov-tag">⛰️ AB</div>
+      <div class="prov-tag">🌾 SK</div>
+      <div class="prov-tag">🌻 MB</div>
+      <div class="prov-tag">🍁 ON</div>
+      <div class="prov-tag">⚜️ QC</div>
+      <div class="prov-tag">🌊 NB</div>
+      <div class="prov-tag">🦞 NS</div>
+      <div class="prov-tag">🏝️ PE</div>
+      <div class="prov-tag">🐟 NL</div>
+      <div class="prov-tag">🐻 YT</div>
+      <div class="prov-tag">💎 NT</div>
+      <div class="prov-tag">❄️ NU</div>
+    </div>
+
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-icon">🏢</div>
+        <h3>1. Pick Your Province & Business Type</h3>
+        <p>Corporation, sole proprietorship, partnership, restaurant, retail, contractor — we have templates for 30+ Canadian business types.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">📋</div>
+        <h3>2. We Load Your Deadlines</h3>
+        <p>CRA filings, GST/HST, provincial tax, WSIB/WorkSafeBC, business licences, health inspections — all pre-populated with filing instructions.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">🔔</div>
+        <h3>3. Get Smart Reminders</h3>
+        <p>Email and SMS alerts at 30, 14, 7, and 1 day before each deadline. Escalating urgency. No more CRA surprises.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">✅</div>
+        <h3>4. File With Confidence</h3>
+        <p>Each deadline includes step-by-step instructions, direct links to CRA My Business Account, costs, and penalty info.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO DASHBOARD -->
+<section id="demo" class="demo-section">
+  <div class="container">
+    <div class="section-label">Interactive Demo</div>
+    <h2 class="section-title">See It In Action</h2>
+    <p class="section-sub">Click any deadline to see the full filing guide. This is exactly what your Canadian compliance dashboard looks like.</p>
+
+    <div class="dashboard">
+      <div class="dash-topbar">
+        <h3>📊 My Canadian Deadlines</h3>
+        <div class="dash-topbar-right">
+          <select class="prov-select" id="provSelect">
+            <option>🍁 Ontario</option>
+            <option>🏔️ British Columbia</option>
+            <option>⛰️ Alberta</option>
+            <option>⚜️ Québec</option>
+            <option>🌾 Saskatchewan</option>
+            <option>🌻 Manitoba</option>
+            <option>🌊 New Brunswick</option>
+            <option>🦞 Nova Scotia</option>
+          </select>
+          <select class="biz-select" id="bizType">
+            <option>🏪 Retail Store (Corp)</option>
+            <option>🍔 Restaurant</option>
+            <option>💻 Freelancer / Sole Prop</option>
+            <option>🏗️ Contractor</option>
+            <option>🏥 Medical Practice</option>
+          </select>
+          <button class="btn btn-primary btn-sm" onclick="openAddModal()">+ Add Deadline</button>
+        </div>
+      </div>
+      <div class="dash-stats" id="dashStats"></div>
+      <div class="dash-filters" id="dashFilters">
+        <button class="dash-pill active" data-cat="all">All</button>
+        <button class="dash-pill" data-cat="CRA">🏛️ CRA</button>
+        <button class="dash-pill" data-cat="Provincial">📍 Provincial</button>
+        <button class="dash-pill" data-cat="Licence">📄 Licences</button>
+        <button class="dash-pill" data-cat="Insurance">🛡️ Insurance</button>
+        <button class="dash-pill" data-cat="Compliance">⚖️ Compliance</button>
+        <button class="dash-pill" data-cat="Permit">🏗️ Permits</button>
+      </div>
+      <div class="dash-body" id="dashBody"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Everything You Need to Stay CRA-Compliant</h2>
+    <p class="section-sub">Built for Canadian business owners, not accountants. Simple, clear, and impossible to ignore.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🇨🇦</div>
+        <h3>Canadian-First Templates</h3>
+        <p>Pre-loaded deadlines for CRA, Revenu Québec, provincial workers' comp, and municipal business licences across all 13 provinces and territories.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Multi-Channel Reminders</h3>
+        <p>Get notified by email, SMS, and in-app. Escalating urgency as the CRA deadline approaches. Never miss a remittance again.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h3>CRA Filing Guides</h3>
+        <p>Every deadline includes plain-English instructions, direct links to CRA My Business Account, estimated costs, and penalty calculations.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>Accountant & Bookkeeper Access</h3>
+        <p>Share your dashboard with your CPA, bookkeeper, or business partner. Everyone stays in the loop on what's due and when.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Compliance Score</h3>
+        <p>See your overall compliance health at a glance. Green means you're in good standing. Red means the CRA notice is coming.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>Auto-Renewal Tracking</h3>
+        <p>Deadlines automatically reset for the next period once you mark them complete. Quarterly GST/HST? Set it and forget it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing-section">
+  <div class="container">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Cheaper Than a Single CRA Penalty</h2>
+    <p class="section-sub">One missed GST/HST deadline can cost $500+ in penalties. Our Pro plan is $10 CAD/month. Do the math.</p>
+
+    <div class="pricing-toggle">
+      <button class="active" id="toggleMonthly" onclick="setPricing('monthly')">Monthly</button>
+      <button id="toggleYearly" onclick="setPricing('yearly')">Yearly <span class="save-badge">SAVE 5%</span></button>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Basic</h3>
+        <div class="price-amount" id="priceBasic">$0<span> CAD/mo</span></div>
+        <div class="price-period" id="periodBasic">Free forever</div>
+        <ul>
+          <li>Up to 5 deadlines</li>
+          <li>Email reminders</li>
+          <li>Basic CRA filing guides</li>
+          <li>1 business type template</li>
+          <li>1 province</li>
+        </ul>
+        <a href="#demo" class="btn btn-outline">Get Started Free</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Pro</h3>
+        <div class="price-amount" id="pricePro">$10<span> CAD/mo</span></div>
+        <div class="price-period" id="periodPro">Billed monthly</div>
+        <ul>
+          <li>Unlimited deadlines</li>
+          <li>Email + SMS reminders</li>
+          <li>Detailed CRA filing guides with direct links</li>
+          <li>All 30+ Canadian business templates</li>
+          <li>All provinces & territories</li>
+          <li>Compliance score dashboard</li>
+          <li>Share with 1 accountant</li>
+        </ul>
+        <button class="btn btn-primary" onclick="openAddModal()">Start 14-Day Free Trial</button>
+      </div>
+      <div class="price-card">
+        <h3>Business</h3>
+        <div class="price-amount" id="priceBiz">$20<span> CAD/mo</span></div>
+        <div class="price-period" id="periodBiz">Billed monthly</div>
+        <ul>
+          <li>Everything in Pro</li>
+          <li>Up to 5 locations / provinces</li>
+          <li>Team access (5 users)</li>
+          <li>Priority support</li>
+          <li>Custom deadline categories</li>
+          <li>Export & reporting</li>
+          <li>Revenu Québec integration</li>
+        </ul>
+        <button class="btn btn-dark">Contact Sales</button>
+      </div>
+    </div>
+    <p class="price-note">All prices in Canadian dollars (CAD). No hidden fees. Cancel anytime. GST/HST applicable.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common Questions</h2>
+    <p class="section-sub">Everything you need to know before getting started.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What Canadian deadlines does DeadlineHQ track?</div>
+        <div class="faq-a">CRA deadlines including T2 corporate returns, T1 self-employment returns, GST/HST quarterly and annual remittances, payroll source deductions (CPP, EI, income tax), T4/T4A/T5 information returns, and instalment payments. Provincial deadlines including PST (BC, SK, MB), QST (Québec), workers' compensation (WSIB, WorkSafeBC, WCB), business licence renewals, health and fire inspections, annual returns, and industry-specific permits. If it has a due date and a Canadian penalty, we track it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">I already have an accountant. Do I still need this?</div>
+        <div class="faq-a">Yes! Your accountant handles T2 and GST/HST filings, but what about your municipal business licence renewal? Your health inspection? Your commercial insurance? Your WSIB premium reconciliation? Most deadlines fall through the cracks between you and your accountant. DeadlineHQ keeps both of you aligned — you can even share your dashboard with them directly.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do you know what deadlines apply to my business?</div>
+        <div class="faq-a">When you sign up, you select your business type (corporation, sole proprietorship, partnership, etc.), your province or territory, and your industry. We use this to pre-load a template of all common CRA, provincial, and municipal deadlines. You can then add, remove, or customize any deadline to match your exact situation. For example, an Ontario restaurant gets WSIB, health inspection, liquor licence, and PST-exempt deadlines automatically.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does this work for Québec businesses with Revenu Québec?</div>
+        <div class="faq-a">Absolutely. Québec businesses have additional provincial filing requirements including QST remittances, Relevé slips (RL-1, RL-3), CNESST premiums, and provincial corporate tax returns. Our Québec templates include both CRA and Revenu Québec deadlines with filing instructions for each agency. The Business plan includes direct links to both CRA My Business Account and Mon dossier pour les entreprises.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What happens if I miss a deadline anyway?</div>
+        <div class="faq-a">Our escalation system makes that very unlikely — you'll get reminders at 30, 14, 7, 3, and 1 day before each deadline via email and SMS. But if you do miss one, each deadline card includes CRA penalty calculations, interest rates, late-filing instructions, and information about the CRA Voluntary Disclosures Program (VDP) to help you minimize the damage.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is my data stored in Canada?</div>
+        <div class="faq-a">Yes. All data is stored on Canadian servers (AWS Canada — Montreal region) in compliance with PIPEDA (Personal Information Protection and Electronic Documents Act) and applicable provincial privacy legislation. We never share your data with third parties.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I cancel anytime?</div>
+        <div class="faq-a">Absolutely. No contracts, no commitments. Cancel from your dashboard in two clicks. If you're on an annual plan, we'll refund the prorated unused portion. Your data stays accessible for 30 days after cancellation in case you change your mind.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Stop Paying CRA Penalties You Don't Owe</h2>
+    <p>Join Canadian small business owners who never miss a deadline. Set up takes less than 5 minutes. All deadlines pre-loaded for your province.</p>
+    <a href="#pricing" class="btn btn-dark btn-lg">Start Your Free Trial →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p style="color:white; font-weight:700; font-size:1.05rem; margin-bottom:0.4rem;">DeadlineHQ 🇨🇦</p>
+    <p>Never miss a Canadian business deadline again.</p>
+    <p class="footer-canada">Proudly Canadian. Data stored in Canada under PIPEDA. All prices in CAD. GST/HST #: 123456789 RT0001</p>
+    <p style="margin-top:1.25rem;">© 2025 DeadlineHQ. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact</a> | <a href="#">Accessibility</a></p>
+  </div>
+</footer>
+
+<!-- DETAIL MODAL -->
+<div class="modal-bg" id="detailModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Deadline Details</h2>
+      <button class="modal-close" onclick="closeAllModals()">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline btn-sm" onclick="closeAllModals()">Close</button>
+      <button class="btn btn-primary btn-sm" onclick="closeAllModals()">✓ Mark as Filed</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD DEADLINE MODAL -->
+<div class="modal-bg" id="addModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Add New Deadline</h2>
+      <button class="modal-close" onclick="closeAllModals()">×</button>
+    </div>
+    <div class="modal-body">
+      <form class="add-form" onsubmit="event.preventDefault(); addDeadline();">
+        <label>Deadline Name</label>
+        <input type="text" id="addName" placeholder="e.g., Q2 GST/HST Remittance" required>
+        <label>Category</label>
+        <select id="addCat">
+          <option>CRA</option><option>Provincial</option><option>Licence</option>
+          <option>Insurance</option><option>Compliance</option><option>Permit</option>
+        </select>
+        <label>Province / Territory</label>
+        <select id="addProv">
+          <option>Federal (CRA)</option><option>Ontario</option><option>British Columbia</option>
+          <option>Alberta</option><option>Québec</option><option>Saskatchewan</option>
+          <option>Manitoba</option><option>New Brunswick</option><option>Nova Scotia</option>
+          <option>Prince Edward Island</option><option>Newfoundland & Labrador</option>
+          <option>Yukon</option><option>Northwest Territories</option><option>Nunavut</option>
+        </select>
+        <label>Due Date</label>
+        <input type="date" id="addDate" required>
+        <label>Filing Instructions</label>
+        <textarea id="addGuide" placeholder="How to file this deadline..."></textarea>
+        <label>Estimated Cost (CAD)</label>
+        <input type="text" id="addCost" placeholder="e.g., $250 CAD">
+        <div style="margin-top:16px; display:flex; gap:8px; justify-content:flex-end;">
+          <button type="button" class="btn btn-outline btn-sm" onclick="closeAllModals()">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Add Deadline</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== DATE HELPERS =====
+const today = new Date();
+function d(offset) {
+  const dt = new Date(today);
+  dt.setDate(dt.getDate() + offset);
+  return dt;
+}
+function fmt(dt) {
+  return dt.toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+function daysUntil(dt) {
+  return Math.ceil((dt - today) / (1000 * 60 * 60 * 24));
+}
+
+// ===== CANADIAN DEADLINE DATA =====
+let deadlines = [
+  {
+    name: "GST/HST Quarterly Remittance (Q1)",
+    category: "CRA",
+    jurisdiction: "Federal (CRA)",
+    date: d(-3),
+    cost: "Varies (GST/HST collected minus ITCs)",
+    penalty: "CRA charges 1% of the amount owing, plus ¼% for each full month the return is late (max 12 months). Daily compound interest at the prescribed rate also applies.",
+    guide: [
+      "Calculate your net tax: GST/HST collected minus Input Tax Credits (ITCs).",
+      "Log into <strong>CRA My Business Account</strong> at canada.ca/my-cra-business-account.",
+      "Select 'File a return' under the GST/HST section.",
+      "Complete the GST34 return online or use compatible accounting software (QuickBooks, Xero, Wave).",
+      "Submit payment via online banking, pre-authorized debit, or at your financial institution."
+    ],
+    craRef: "CRA Guide RC4022 — General Information for GST/HST Registrants"
+  },
+  {
+    name: "Payroll Source Deductions Remittance",
+    category: "CRA",
+    jurisdiction: "Federal (CRA)",
+    date: d(-1),
+    cost: "Varies (CPP, EI, and income tax withheld)",
+    penalty: "3% penalty if 1-3 days late, 5% if 4-5 days late, 7% if 6-7 days late, 10% if 7+ days late or multiple failures. Repeat offenders face 20% penalty. Plus daily compound interest.",
+    guide: [
+      "Calculate total CPP contributions, EI premiums, and federal/provincial income tax deducted from all employees.",
+      "Include the employer's share of CPP (equal to employee's) and EI (1.4× the employee's share).",
+      "Log into <strong>CRA My Business Account</strong> and select 'Remit payroll deductions'.",
+      "Use your 15-character payroll account number (RP####) when making payment.",
+      "Regular remitters: due by the 15th of the following month. Accelerated remitters: see your remittance schedule."
+    ],
+    craRef: "CRA Guide T4001 — Employers' Guide: Payroll Deductions and Remittances"
+  },
+  {
+    name: "Municipal Business Licence Renewal",
+    category: "Licence",
+    jurisdiction: "Municipal",
+    date: d(4),
+    cost: "$50 – $500 CAD (varies by municipality)",
+    penalty: "Operating without a valid licence can result in fines of $500–$5,000+ and a stop-work order. Some municipalities charge double the licence fee as a late penalty.",
+    guide: [
+      "Check your city or municipality's website for renewal requirements and fees.",
+      "Update any changed business information (address, trade name, business activity).",
+      "Pay the renewal fee online through your municipality's portal or in person at city hall.",
+      "Display the updated licence at your place of business as required by your municipal by-law."
+    ],
+    craRef: "Contact your local municipal clerk's office"
+  },
+  {
+    name: "Commercial General Liability Insurance Renewal",
+    category: "Insurance",
+    jurisdiction: "Provincial",
+    date: d(6),
+    cost: "$500 – $2,500 CAD/year",
+    penalty: "Lapse in coverage leaves you personally liable. Some provinces and many commercial leases require proof of active insurance. Landlords may terminate your lease.",
+    guide: [
+      "Review your current policy at least 30 days before expiration.",
+      "Compare quotes from 2-3 Canadian brokers or direct insurers (Aviva, Intact, Wawanesa, Northbridge).",
+      "Confirm coverage limits match your current revenue, industry requirements, and lease obligations.",
+      "Pay the premium before the expiration date to avoid a coverage gap. Request a Certificate of Insurance for your landlord."
+    ],
+    craRef: "Insurance Bureau of Canada (IBC) — ibc.ca"
+  },
+  {
+    name: "WSIB Premium Remittance (Ontario)",
+    category: "Provincial",
+    jurisdiction: "Ontario",
+    date: d(2),
+    cost: "Varies (based on insurable earnings × industry rate)",
+    penalty: "WSIB charges monthly interest at the Bank of Canada prime rate + 2% on late premiums. Non-registration can result in 100% of the premium owed as a penalty + personal liability for workplace injuries.",
+    guide: [
+      "Log into your <strong>WSIB online services</strong> account at wsib.ca.",
+      "Report your actual insurable earnings for the period.",
+      "The system will calculate your premium based on your industry classification rate.",
+      "Submit payment via pre-authorized debit, online banking, or cheque.",
+      "Schedule 1 employers: report monthly or quarterly based on your premium size."
+    ],
+    craRef: "WSIB Ontario — wsib.ca/en/businesses"
+  },
+  {
+    name: "T2 Corporate Income Tax Return",
+    category: "CRA",
+    jurisdiction: "Federal (CRA)",
+    date: d(45),
+    cost: "Varies (corporate income tax owing)",
+    penalty: "5% of the unpaid tax, plus 1% per month for up to 12 months. If you've been assessed a late-filing penalty before, the penalty doubles to 10% + 2%/month. Tax balance is due 2 months (or 3 months for certain CCPCs) after year-end even if the return isn't due for 6 months.",
+    guide: [
+      "Prepare your T2 return using CRA-certified software (e.g., TurboTax Business, Profile, Taxprep).",
+      "File electronically through CRA's Corporation Internet Filing service.",
+      "Ensure all schedules are complete: Schedule 1 (Net Income), Schedule 8 (CCA), Schedule 50 (Shareholder info).",
+      "Remember: the <strong>tax payment</strong> is due 2-3 months after your fiscal year-end, but the <strong>return</strong> is due 6 months after year-end.",
+      "File even if no tax is owing — the penalty for late filing applies regardless."
+    ],
+    craRef: "CRA Guide T4012 — T2 Corporation Income Tax Guide"
+  },
+  {
+    name: "Health Inspection (Food Premises)",
+    category: "Permit",
+    jurisdiction: "Municipal / Provincial",
+    date: d(60),
+    cost: "$100 – $350 CAD (inspection fee)",
+    penalty: "Failed or missed inspections can result in immediate closure orders, $1,000–$25,000 fines under provincial health protection acts, and public posting of violations (DineSafe in Toronto, etc.).",
+    guide: [
+      "Contact your local public health unit to confirm your inspection schedule.",
+      "Review the food safety inspection checklist: temperature logs, food storage, cross-contamination prevention, pest control, employee hygiene.",
+      "Ensure all food handlers have valid provincial food handler certification (required in ON, BC, AB).",
+      "Have all documentation ready: food handler certificates, equipment maintenance logs, HACCP plan if applicable.",
+      "Correct any previous inspection deficiencies before the reinspection."
+    ],
+    craRef: "Contact your local Public Health Unit"
+  },
+  {
+    name: "T4 / T4A Information Returns",
+    category: "CRA",
+    jurisdiction: "Federal (CRA)",
+    date: d(90),
+    cost: "No filing fee (but software costs apply)",
+    penalty: "$10/day for each T4/T4A slip filed late, minimum $100, maximum $2,500 per return. Plus $25/slip penalty for failing to file electronically if filing 5+ slips.",
+    guide: [
+      "Compile all employee earnings, CPP/EI deductions, and income tax withheld for the calendar year.",
+      "Prepare T4 slips for employees and T4A slips for contractors/other income recipients.",
+      "File the T4 Summary and individual slips electronically via <strong>CRA My Business Account</strong> (mandatory if 5+ slips).",
+      "Distribute copies to employees by the last day of February.",
+      "Québec employers must also file RL-1 slips with Revenu Québec."
+    ],
+    craRef: "CRA Guide RC4120 — Employers' Guide: Filing the T4 Slip and Summary"
+  },
+  {
+    name: "Annual Return Filing (Provincial)",
+    category: "Compliance",
+    jurisdiction: "Provincial",
+    date: d(120),
+    cost: "$8.00 – $60 CAD (varies by province)",
+    penalty: "Late fees vary: Ontario charges $17 administrative fee; BC charges $42.50 late fee. Continued failure to file can result in involuntary dissolution of your corporation. You lose the legal protection of your corporate structure.",
+    guide: [
+      "Ontario: File through the Ontario Business Registry at ontario.ca/business. Due within 60 days of your anniversary date.",
+      "BC: File your Annual Report through BC Registry Services at bcregistry.gov.bc.ca. Due within 2 months of the anniversary of incorporation.",
+      "Alberta: File your Annual Return through the Alberta Corporate Registry.",
+      "Verify and update your registered office address, directors, and officers.",
+      "Pay the filing fee online. Processing is usually instant."
+    ],
+    craRef: "Check your provincial Corporate Registry"
+  },
+  {
+    name: "PST Monthly Remittance (BC / SK / MB)",
+    category: "Provincial",
+    jurisdiction: "BC / SK / MB",
+    date: d(12),
+    cost: "Varies (PST collected on taxable sales)",
+    penalty: "BC: 10% penalty on amounts outstanding past due date. SK: 1% penalty per month. MB: 10% penalty on first default. Interest compounds daily on all overdue amounts.",
+    guide: [
+      "BC: Log into <strong>eTaxBC</strong> at etax.gov.bc.ca and file your PST return.",
+      "SK: File through <strong>Saskatchewan eTax Services</strong> at sets.gov.sk.ca.",
+      "MB: File through <strong>Manitoba TAXcess</strong> at taxcess.tao.gov.mb.ca.",
+      "Report total sales, exempt sales, and PST collected for the period.",
+      "Submit payment electronically by the 20th of the following month.",
+      "Commission: You may be eligible to keep a small percentage as a collection commission."
+    ],
+    craRef: "Contact your provincial Ministry of Finance"
+  },
+  {
+    name: "WorkSafeBC Annual Premium",
+    category: "Provincial",
+    jurisdiction: "British Columbia",
+    date: d(35),
+    cost: "Varies (based on assessable payroll × industry rate)",
+    penalty: "25% surcharge on late payments. Non-compliance can result in stop-work orders and personal liability for workplace injuries. WorkSafeBC can also place a lien on your property.",
+    guide: [
+      "Log into your <strong>WorkSafeBC online services</strong> account at worksafebc.com.",
+      "Report your actual payroll for the previous year and estimated payroll for the current year.",
+      "Your premium will be calculated based on your Classification Unit (CU) rate and experience rating.",
+      "Submit payment by the due date shown on your assessment notice.",
+      "New businesses: register within 10 days of hiring your first worker."
+    ],
+    craRef: "WorkSafeBC — worksafebc.com/en/insurance"
+  },
+  {
+    name: "GST/HST Annual Return & Instalment",
+    category: "CRA",
+    jurisdiction: "Federal (CRA)",
+    date: d(75),
+    cost: "Varies (net GST/HST for the fiscal year)",
+    penalty: "Same as quarterly: 1% + ¼% per month up to 12 months. Instalment interest charged if quarterly instalments aren't paid on time. Interest rate is the CRA prescribed rate, compounded daily.",
+    guide: [
+      "If your annual net tax is $3,000+ ($1,500+ in Québec), you must pay quarterly instalments.",
+      "Calculate instalments using the prior-year method or current-year method.",
+      "File the annual GST34 return within 3 months of your fiscal year-end.",
+      "Use <strong>CRA My Business Account</strong> or certified tax software to file and pay.",
+      "Quick Method filers: calculate remittance using the applicable rate for your province (varies by sector)."
+    ],
+    craRef: "CRA Guide RC4058 — Quick Method of Accounting for GST/HST"
+  }
+];
+
+// ===== RENDER FUNCTIONS =====
+function getUrgency(dt) {
+  const days = daysUntil(dt);
+  if (days < 0) return 'overdue';
+  if (days <= 7) return 'this-week';
+  if (days <= 30) return 'this-month';
+  return 'upcoming';
+}
+
+function urgencyLabel(u) {
+  return { 'overdue': 'Overdue', 'this-week': 'This Week', 'this-month': 'This Month', 'upcoming': 'Upcoming' }[u];
+}
+
+function renderStats() {
+  const counts = { overdue: 0, 'this-week': 0, 'this-month': 0, upcoming: 0 };
+  deadlines.forEach(dl => counts[getUrgency(dl.date)]++);
+  document.getElementById('dashStats').innerHTML = `
+    <div class="dash-stat s-red"><strong>${counts.overdue}</strong><span>Overdue</span></div>
+    <div class="dash-stat s-orange"><strong>${counts['this-week']}</strong><span>This Week</span></div>
+    <div class="dash-stat s-yellow"><strong>${counts['this-month']}</strong><span>This Month</span></div>
+    <div class="dash-stat s-green"><strong>${counts.upcoming}</strong><span>Upcoming</span></div>
+  `;
+}
+
+let activeCat = 'all';
+
+function renderDeadlines() {
+  const body = document.getElementById('dashBody');
+  const filtered = activeCat === 'all' ? deadlines : deadlines.filter(dl => dl.category === activeCat);
+
+  if (filtered.length === 0) {
+    body.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text-muted);">No deadlines in this category.</div>';
+    return;
+  }
+
+  filtered.sort((a, b) => a.date - b.date);
+
+  body.innerHTML = filtered.map((dl) => {
+    const u = getUrgency(dl.date);
+    const days = daysUntil(dl.date);
+    const daysText = days < 0 ? `${Math.abs(days)} days ago` : days === 0 ? 'Due today' : `in ${days} days`;
+    const origIdx = deadlines.indexOf(dl);
+    return `
+      <div class="deadline-card" onclick="openDetail(${origIdx})">
+        <div class="dl-bar ${u}"></div>
+        <div class="dl-info">
+          <h4>${dl.name}</h4>
+          <div class="dl-meta">
+            <span>📅 ${fmt(dl.date)}</span>
+            <span>🏷️ ${dl.category}</span>
+            <span>📍 ${dl.jurisdiction}</span>
+            <span>💲 ${dl.cost}</span>
+          </div>
+        </div>
+        <div class="dl-right">
+          <div class="dl-badge ${u}">${urgencyLabel(u)}</div>
+          <div class="dl-days">${daysText}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ===== DETAIL MODAL =====
+function openDetail(idx) {
+  const dl = deadlines[idx];
+  const u = getUrgency(dl.date);
+  const days = daysUntil(dl.date);
+  const daysText = days < 0 ? `${Math.abs(days)} days overdue` : days === 0 ? 'Due today' : `${days} days remaining`;
+
+  document.getElementById('modalTitle').textContent = dl.name;
+  document.getElementById('modalBody').innerHTML = `
+    <div class="detail-row"><span class="detail-label">Status</span><span class="detail-value"><span class="dl-badge ${u}">${urgencyLabel(u)}</span> — ${daysText}</span></div>
+    <div class="detail-row"><span class="detail-label">Due Date</span><span class="detail-value">${fmt(dl.date)}</span></div>
+    <div class="detail-row"><span class="detail-label">Category</span><span class="detail-value">${dl.category}</span></div>
+    <div class="detail-row"><span class="detail-label">Jurisdiction</span><span class="detail-value">${dl.jurisdiction}</span></div>
+    <div class="detail-row"><span class="detail-label">Estimated Cost</span><span class="detail-value">${dl.cost}</span></div>
+    <div class="guide-box">
+      <h4>📖 How to File</h4>
+      <ol>${dl.guide.map(s => `<li>${s}</li>`).join('')}</ol>
+      <p class="penalty">⚠️ Penalty if missed: ${dl.penalty}</p>
+      ${dl.craRef ? `<p class="cra-ref">📚 Reference: ${dl.craRef}</p>` : ''}
+    </div>
+  `;
+  document.getElementById('detailModal').classList.add('open');
+}
+
+// ===== ADD DEADLINE =====
+function openAddModal() {
+  document.getElementById('addModal').classList.add('open');
+}
+
+function addDeadline() {
+  const name = document.getElementById('addName').value;
+  const cat = document.getElementById('addCat').value;
+  const prov = document.getElementById('addProv').value;
+  const date = new Date(document.getElementById('addDate').value + 'T12:00:00');
+  const cost = document.getElementById('addCost').value || 'TBD';
+  const guide = document.getElementById('addGuide').value || 'Filing instructions coming soon.';
+
+  deadlines.push({
+    name, category: cat, jurisdiction: prov, date, cost,
+    penalty: 'Penalty information not yet available.',
+    guide: [guide],
+    craRef: ''
+  });
+
+  closeAllModals();
+  renderStats();
+  renderDeadlines();
+  document.getElementById('addName').value = '';
+  document.getElementById('addDate').value = '';
+  document.getElementById('addCost').value = '';
+  document.getElementById('addGuide').value = '';
+}
+
+// ===== FILTERS =====
+document.getElementById('dashFilters').addEventListener('click', e => {
+  if (!e.target.classList.contains('dash-pill')) return;
+  document.querySelectorAll('.dash-pill').forEach(p => p.classList.remove('active'));
+  e.target.classList.add('active');
+  activeCat = e.target.dataset.cat;
+  renderDeadlines();
+});
+
+// ===== PRICING TOGGLE =====
+function setPricing(mode) {
+  const m = document.getElementById('toggleMonthly');
+  const y = document.getElementById('toggleYearly');
+
+  if (mode === 'monthly') {
+    m.classList.add('active');
+    y.classList.remove('active');
+    document.getElementById('priceBasic').innerHTML = '$0<span> CAD/mo</span>';
+    document.getElementById('periodBasic').textContent = 'Free forever';
+    document.getElementById('pricePro').innerHTML = '$10<span> CAD/mo</span>';
+    document.getElementById('periodPro').textContent = 'Billed monthly';
+    document.getElementById('priceBiz').innerHTML = '$20<span> CAD/mo</span>';
+    document.getElementById('periodBiz').textContent = 'Billed monthly';
+  } else {
+    y.classList.add('active');
+    m.classList.remove('active');
+    document.getElementById('priceBasic').innerHTML = '$0<span> CAD/yr</span>';
+    document.getElementById('periodBasic').textContent = 'Free forever';
+    // $10/mo × 12 = $120/yr × 0.95 = $114/yr → $9.50/mo
+    document.getElementById('pricePro').innerHTML = '$114<span> CAD/yr</span>';
+    document.getElementById('periodPro').textContent = '$9.50/mo · Save $6/year';
+    // $20/mo × 12 = $240/yr × 0.95 = $228/yr → $19/mo
+    document.getElementById('priceBiz').innerHTML = '$228<span> CAD/yr</span>';
+    document.getElementById('periodBiz').textContent = '$19.00/mo · Save $12/year';
+  }
+}
+
+// ===== FAQ =====
+function toggleFaq(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+
+// ===== MODALS =====
+function closeAllModals() {
+  document.querySelectorAll('.modal-bg').forEach(m => m.classList.remove('open'));
+}
+document.querySelectorAll('.modal-bg').forEach(bg => {
+  bg.addEventListener('click', e => { if (e.target === bg) closeAllModals(); });
+});
+
+// ===== INIT =====
+renderStats();
+renderDeadlines();
+</script>
+
+</body>
+</html>
